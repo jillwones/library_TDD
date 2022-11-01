@@ -2,6 +2,12 @@ class Book
   def initialize(title, author, category)
     @title = title 
     @author = author 
-    @genre = category 
+    @category = category 
+  end
+  def title 
+    @title
+  end
+  def category 
+    @category
   end
 end
