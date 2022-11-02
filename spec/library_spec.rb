@@ -35,4 +35,18 @@ describe "Library Object" do
       end 
     end
   end
+
+  it "returns all the books in a given category" do 
+    expect(@lib.get_books_in_cat(:development).length).to eq(2)
+  end
+
+  it 'accepts new books' do 
+    new_book = Book.new('NewOne','Someone',:comedy)
+    expect(@lib.add_book(new_book).last).to eq(new_book)
+  end
+
+  it "retrieves books based on inputted title" do 
+    expect(@lib.get_book('Responsive Web Design')).to be_an_instance_of Book
+  end
+  
 end
