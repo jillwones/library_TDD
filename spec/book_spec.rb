@@ -1,34 +1,34 @@
 require 'book'
 
 describe Book do
-  before :each do 
+  before :each do
     @book = Book.new 'Title', 'Author', :category
-  end 
+  end
 
-  describe '#new' do 
-    it 'returns a new book object' do 
+  describe '#new' do
+    it 'returns a new book object' do
       expect(@book).to be_an_instance_of(Book)
-    end 
+    end
 
-    it 'ArgumentError when passed < 3 arguments' do 
-      expect{ Book.new 'Title', 'Author' }.to raise_error ArgumentError
+    it 'ArgumentError when passed < 3 arguments' do
+      expect { Book.new 'Title', 'Author' }.to raise_error ArgumentError
     end
   end
 
-  describe '#title' do 
-    it 'returns the correct title' do 
+  describe '#title' do
+    it 'returns the correct title' do
       expect(@book.title).to eq('Title')
     end
   end
 
-  describe "#author" do
-    it 'returns the correct author' do 
+  describe '#author' do
+    it 'returns the correct author' do
       expect(@book.author).to eq('Author')
-    end 
-  end 
+    end
+  end
 
-  describe '#category' do 
-    it 'returns the correct category' do 
+  describe '#category' do
+    it 'returns the correct category' do
       expect(@book.category).to eq(:category)
     end
   end
