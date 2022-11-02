@@ -48,5 +48,12 @@ describe "Library Object" do
   it "retrieves books based on inputted title" do 
     expect(@lib.get_book('Responsive Web Design')).to be_an_instance_of Book
   end
-  
+
+  it 'saves the library' do 
+    books = @lib.books.map { |book| book.title }
+    @lib.save 'our_new_library.yml'
+    lib2 = Library.new 'books.yml'
+    books2 = lib2.books.map { |book| book.title }
+    expect(books).to eq(books2)
+  end
 end
