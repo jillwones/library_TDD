@@ -10,15 +10,22 @@ describe 'Library Object' do
       Book.new('JavaScript Patterns', 'Stoyan Stefanov', :development),
       Book.new('Responsive Web Design', 'Ethan Marcotte', :design)
     ]
+    # above => before :all runs the block one time before all the tests
 
     File.open 'books.yml', 'w' do |f|
       f.write YAML.dump lib_array
+    
+    # above => before all the below tests run, the lib_array is saved to a yml file,
+    # books.yml
     end
   end
 
   before :each do
     @lib = Library.new('books.yml')
   end
+
+  # above => before :each runs the block one time per test, so for each test an instance
+  # of the Library class is made with the books from the books.yml file
 
   describe '#new' do
     context 'with no parameters' do
@@ -49,7 +56,7 @@ describe 'Library Object' do
   end
 
   it 'saves the library' do
-    books = @lib.books.map { |book| book.title }
+    books = @lib.books.map { |book| book.title } # rubocop recommended changing the block here to {&:title}
     @lib.save 'our_new_library.yml'
     lib2 = Library.new 'books.yml'
     books2 = lib2.books.map { |book| book.title }

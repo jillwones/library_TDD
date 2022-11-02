@@ -10,6 +10,9 @@ class Library
     @books = @lib_file ? YAML.load(File.read(@lib_file)) : []
   end
 
+  # above => if passed an argument when instantiating Library then yaml will load argument (filename)
+  # if no arg then nothing is loaded and @books = []
+
   def get_books_in_cat(category)
     @books.select do |book|
       book.category == category
@@ -30,4 +33,10 @@ class Library
       f.write YAML.dump @books
     end
   end
+
+  # above => if passed an argument when calling save method, it'll save to that file,
+  # if no arg then it'll save to the @lib_file that was set when the class instance 
+  # was made, and if there was no lib_file passed when the instance was made then
+  # it'll save to library.yml
+  
 end
